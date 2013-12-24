@@ -288,8 +288,8 @@ var __slice = Array.prototype.slice;
             }
             if (this.painting) {
                 this.action.events.push({
-                    x: e.pageX - this.canvas.offset().left,
-                    y: e.pageY - this.canvas.offset().top,
+                    x: ( Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left,
+                    y: ( Math.round(e.pageY / this.gridsize) * this.gridsize ) - this.canvas.offset().top,
                     event: e.type
                 });
                 return this.redraw();
@@ -304,11 +304,7 @@ var __slice = Array.prototype.slice;
             _ref = action.events;
             for (_i = 0, _len = _ref.length; _i < _len; _i++) {
                 event = _ref[_i];
-                var newx = event.x;
-                var newy = event.y;
-                newx = Math.round(newx / this.gridsize) * this.gridsize;
-                newy = Math.round(newy / this.gridsize) * this.gridsize;
-                this.context.lineTo(newx, newy);
+                this.context.lineTo(event.x, event.y);
                 previous = event;
             }
             this.context.strokeStyle = action.color;
