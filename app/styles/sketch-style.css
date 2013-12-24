@@ -1,0 +1,16 @@
+
+canvas { 
+    border-style:ridge;
+}
+
+canvas.showgrids1 { 
+    background:url(http://www.mathcats.com/crafts/craftimages/tinygridofdots.gif);
+}
+
+canvas.showgrids2 { 
+    background:url(http://www.mathcats.com/crafts/craftimages/biggridofdots.gif);
+}
+
+canvas.showgrids3 { 
+    background:url(http://www.activityvillage.co.uk/sites/default/files/images/grid_paper_square_dots_460_0.jpg);
+}
