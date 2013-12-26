@@ -10,5 +10,10 @@ $(function() {
   });
   $('#colors_sketch').sketch();
   
+  $('button#show-ocr-tools-core').on('click',function() {
+      $('#overhead-ocr-tools-core').toggle('slow');
+      console.log('ocr tools toggle');
+  });
   $('#simple_sketch').sketch();
+  
 });

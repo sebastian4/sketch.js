@@ -19,6 +19,8 @@
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        
+        <hr />
 
         <div class="tools">
             <div class='demo' id='colors_demo'></div>
@@ -34,17 +36,23 @@
             <a href="#colors_sketch" data-savetostorage="png">LStrg</a>
             <a href="#colors_sketch" data-download="png">Dwnld</a>
         </div>
-        <canvas id="colors_sketch" width="400" height="140"></canvas>
+        <canvas id="colors_sketch" width="400" height="130"></canvas>
         
 		<hr /><hr />
 		
-		<canvas id='simple_sketch' width='300' height='70'></canvas>
-  
+		<div id="overhead-ocr-tools-panel">
+		    <button id="show-ocr-tools-core">ocr tools</button>
+		    <div id="overhead-ocr-tools-core" style="display:none">
+		        <canvas id='simple_sketch' width='300' height='60'></canvas>
+		    </div>
+		</div>
+
   		<hr />
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/momentjs/moment.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
         
