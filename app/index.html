@@ -42,7 +42,7 @@
 		
 		<div id="overhead-ocr-tools-panel">
 		    <button id="show-ocr-tools-core">ocr tools</button>
-		    <div id="overhead-ocr-tools-core" style="display:none">
+		    <div id="overhead-ocr-tools-core"> <!--  style="display:none" -->
 		        <div id='ocr-canvas-container'>
 		            <canvas id='ocr-canvas' width='300' height='70'> </canvas>
 		        </div>
@@ -82,9 +82,10 @@
                         <tbody>
                         <tr>
                         <td> <a href="#ocr-canvas" data-savetostorage="png"> <button id="ocr-tool-savelocalstorage" title="save to local storage"> </button> </a> </td>
+                        <td> <a href="#ocr-canvas" data-download="png"> <button id="ocr-tool-download" title="download from local storage"> </button> </a> </td>
                         </tr>
                         <tr>
-                        <td> <a href="#ocr-canvas" data-download="png"> <button id="ocr-tool-submitimage" title="submit image"> </button> </a> </td>
+                        <td> <button id="ocr-tool-submitimage" title="submit image from local storage"> </button> </td>
                         </tr>
                         </tbody>
                         </table>

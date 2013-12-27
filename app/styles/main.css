@@ -61,7 +61,7 @@ body {
 }
 
 #ocr-tool-marker {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
 	/*background-position: -0px -0px; top-left */
 	/*background-position: -42px -0px; right of top-left */
 	/*background-position: -0px -42px; down of top-left*/
@@ -69,57 +69,62 @@ body {
 }
 
 #ocr-tool-decrmarkersize {
-    background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+    background: url('../images/fonticons.jpg');
 	background-position: -210px -462px;
 }
 
 #ocr-tool-incrmarkersize {
-    background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+    background: url('../images/fonticons.jpg');
 	background-position: -462px -504px;
 }
 
 #ocr-tool-eraser {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
 	background-position: -504px -210px;
 }
 
 #ocr-tool-undo {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
 	background-position: -0px -126px;
 }
 
 #ocr-tool-clear {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
 	background-position: -294px -546px;
 }
 
 #ocr-tool-snap2grid {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
 	background-position: -462px -168px;
 }
 
 #ocr-tool-showgrid {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
 	background-position: -462px -672px;
 }
 
 #ocr-tool-decrgridsize {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
 	background-position: -378px -0px;
 }
 
 #ocr-tool-incrgridsize {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
 	background-position: -504px -0px;
 }
 
 #ocr-tool-savelocalstorage {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
+	background-position: -42px -210px;
+}
+
+#ocr-tool-download {
+    background: url('../images/fonticons.jpg');
 	background-position: -84px -210px;
 }
 
 #ocr-tool-submitimage {
-	background: url('http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg');
+	background: url('../images/fonticons.jpg');
 	background-position: -504px -126px;
 }
 
