@@ -30,7 +30,7 @@ var __slice = Array.prototype.slice;
     Sketch = (function() {
         function Sketch(el, opts) {
             this.el = el;
-            this.el.style.cursor = "url('http://www.sesh.com/images-brush.cursor.g.32.png'), pointer";
+            this.el.style.cursor = "url('../images/brush.cursor.g.32.png'), pointer";
             this.canvas = $(el);
             this.context = el.getContext('2d');
             this.options = $.extend({
@@ -176,13 +176,13 @@ var __slice = Array.prototype.slice;
             if (key === "tool") {
                 console.log("tool chosen with value "+value);
                 if (value === "marker") {
-                    this.el.style.cursor = "url('http://www.sesh.com/images-brush.cursor.g.32.png'), pointer";
+                    this.el.style.cursor = "url('../images/brush.cursor.g.32.png'), pointer";
                 } else if (value === "eraser") {
-                    this.el.style.cursor = "url('http://www.sesh.com/images-marker.cursor.g.32.png'), no-drop";
+                    this.el.style.cursor = "url('../images/marker.cursor.g.32.png'), no-drop";
                 } else if (value === "snaptogrid") {
-                    this.el.style.cursor = "url('http://www.sesh.com/images-pointer.g.png'), pointer";
+                    this.el.style.cursor = "url('../images/pointer.g.png'), pointer";
                 } else { // default cursor
-                    this.el.style.cursor = "url('http://www.sesh.com/images-brush.cursor.g.32.png'), pointer";
+                    this.el.style.cursor = "url('../images/brush.cursor.g.32.png'), pointer";
                 } 
             }
             return this.canvas.trigger("sketch.change" + key, value);

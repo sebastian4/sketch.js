@@ -4,13 +4,13 @@ canvas {
 }
 
 canvas.showgrids1 { 
-    background:url(http://www.mathcats.com/crafts/craftimages/tinygridofdots.gif);
+    background:url(../images/dots1.gif);
 }
 
 canvas.showgrids2 { 
-    background:url(http://www.mathcats.com/crafts/craftimages/biggridofdots.gif);
+    background:url(../images/dots2.gif);
 }
 
 canvas.showgrids3 { 
-    background:url(http://www.activityvillage.co.uk/sites/default/files/images/grid_paper_square_dots_460_0.jpg);
+    background:url(../images/dots3.jpg);
 }
