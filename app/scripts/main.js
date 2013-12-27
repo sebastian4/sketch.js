@@ -15,5 +15,33 @@ $(function() {
       console.log('ocr tools toggle');
   });
   $('#ocr-canvas').sketch();
+    
+  $('button#ocr-tool-submitimage').on('click',function() {
+      var ajaxSubmitValue = {
+        name : 'img'+getDateAndRandomNumber()+'.txt',
+        value : localStorage.getItem("currentImage")
+      };
+      $.ajax({
+        url: "scripts/aresponse.txt",
+        type: "get",
+        dataType: "text",
+        data: JSON.stringify(ajaxSubmitValue),
+        success: function(data){
+            console.log("ajax success");
+            $("#ocr-tool-result").html(data);
+        },
+        error:function(){
+            console.log("ajax failure");
+            $("#ocr-tool-result").html('error in submission');
+        }
+      });
+      //$( "#ocr-tool-result" ).load( "scripts/aresponse.txt" );
+  });
+    
+  function getDateAndRandomNumber() {
+      var randomNumber = Math.floor((Math.random()*89)+10); // 10 to 99
+      var currdate = new Date();
+      return '-'+currdate.valueOf()+randomNumber;
+  }
   
 });

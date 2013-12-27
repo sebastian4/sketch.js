@@ -50,6 +50,12 @@ body {
 	border-color: #BB5700;
 }
 
+#td-ocr-tool-result {
+    height: 34px;
+    border: 1px solid;
+	border-color: #BB5700;
+}
+
 #ocr-canvas-tools-draw {
     width: 200px;
 }
