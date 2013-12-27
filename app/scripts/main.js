@@ -14,6 +14,6 @@ $(function() {
       $('#overhead-ocr-tools-core').toggle('slow');
       console.log('ocr tools toggle');
   });
-  $('#simple_sketch').sketch();
+  $('#ocr-canvas').sketch();
   
 });

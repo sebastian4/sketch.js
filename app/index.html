@@ -36,14 +36,60 @@
             <a href="#colors_sketch" data-savetostorage="png">LStrg</a>
             <a href="#colors_sketch" data-download="png">Dwnld</a>
         </div>
-        <canvas id="colors_sketch" width="400" height="130"></canvas>
+        <canvas id="colors_sketch" width="300" height="70"></canvas>
         
 		<hr /><hr />
 		
 		<div id="overhead-ocr-tools-panel">
 		    <button id="show-ocr-tools-core">ocr tools</button>
 		    <div id="overhead-ocr-tools-core" style="display:none">
-		        <canvas id='simple_sketch' width='300' height='60'></canvas>
+		        <div id='ocr-canvas-container'>
+		            <canvas id='ocr-canvas' width='300' height='70'> </canvas>
+		        </div>
+		        <div id='ocr-canvas-tools'>
+		        	<div id='ocr-canvas-tools-draw'>
+		        		<table>
+                        <tbody>
+                        <tr>
+                        <td> <a href='#ocr-canvas' data-tool="marker" data-color='#000' data-size='5'> <button id="ocr-tool-marker" title="draw with marker"> </button> </a> </td>
+                        <td> <a href='#ocr-canvas' data-tool="marker" data-color='#000' data-size='2'> <button id="ocr-tool-decrmarkersize" title="decrease marker size"> </button> </a> </td>
+                        <td> <a href='#ocr-canvas' data-tool="marker" data-color='#000' data-size='10'> <button id="ocr-tool-incrmarkersize" title="increase marker size"> </button> </a> </td>
+                        </tr>
+                        <tr>
+                        <td> <a href="#ocr-canvas" data-tool="eraser"> <button id="ocr-tool-eraser" title="erase with eraser"> </button> </a> </td>
+                        <td> <a href="#ocr-canvas" data-undo="undo"> <button id="ocr-tool-undo" title="undo last"> </button> </a> </td>
+                        <td> <a href="#ocr-canvas" data-clear="cleared"> <button id="ocr-tool-clear" title="clear all"> </button> </a> </td>
+                        </tr>
+                        </tbody>
+                        </table>
+		        	</div>
+		        	<div id='ocr-canvas-tools-grid'>
+		        	    <table>
+                        <tbody>
+                        <tr>
+                        <td> <a href="#ocr-canvas" data-tool="snaptogrid"> <button id="ocr-tool-snap2grid" title="snap to grid"> </button> </a> </td>
+                        <td> <a href="#ocr-canvas" data-showgrid="showgrid"> <button id="ocr-tool-showgrid" title="show grid"> </button> </a> </td>
+                        </tr>
+                        <tr>
+                        <td> <a href="#ocr-canvas" data-showgrid-decrease="showgrid-decrease"> <button id="ocr-tool-decrgridsize" title="decrease grid size"> </button> </a> </td>
+                        <td> <a href="#ocr-canvas" data-showgrid-increase="showgrid-increase"> <button id="ocr-tool-incrgridsize" title="increase grid size"> </button> </a> </td>
+                        </tr>
+                        </tbody>
+                        </table>
+		        	</div>
+		        	<div id='ocr-canvas-tools-cloud'>
+		        	    <table>
+                        <tbody>
+                        <tr>
+                        <td> <a href="#ocr-canvas" data-savetostorage="png"> <button id="ocr-tool-savelocalstorage" title="save to local storage"> </button> </a> </td>
+                        </tr>
+                        <tr>
+                        <td> <a href="#ocr-canvas" data-download="png"> <button id="ocr-tool-submitimage" title="submit image"> </button> </a> </td>
+                        </tr>
+                        </tbody>
+                        </table>
+		        	</div>
+		        </div>
 		    </div>
 		</div>
 
