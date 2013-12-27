@@ -55,7 +55,7 @@ var __slice = Array.prototype.slice;
                     $this = $(this);
                     $canvas = $($this.attr('href'));
                     sketch = $canvas.data('sketch');
-                    _ref = ['color', 'size', 'tool'];
+                    _ref = ['color', 'size', 'tool', 'update'];
                     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
                         key = _ref[_i];
                         if ($this.attr("data-" + key)) {
@@ -91,7 +91,7 @@ var __slice = Array.prototype.slice;
             }
         }
         Sketch.prototype.savetostorage = function(format) {
-            console.log("savetostorage");
+            console.log("save to storage");
             var mime;
             format || (format = "png");
             if (format === "jpg") {
@@ -120,7 +120,7 @@ var __slice = Array.prototype.slice;
             return false;
         };
         Sketch.prototype.showgrid = function() {
-            console.log("showgrid");
+            console.log("show grid");
             var canvas_element = $(this.el);
             if (this.showthegrid === false) {
                 canvas_element.addClass("showgrids"+this.showthegridsize);
@@ -172,7 +172,17 @@ var __slice = Array.prototype.slice;
             return false;
         };
         Sketch.prototype.set = function(key, value) {
-            this[key] = value;
+            console.log('set '+key+' : '+value);
+            if (key === 'update') {
+                //console.log('update on size '+this['size']+' with value '+value);
+                this['size'] = parseInt(this['size']) + parseInt(value);
+                //console.log('updated to '+this['size']);
+                if (this['size'] < 1) { this['size'] = 1; }
+                if (this['size'] > 13) { this['size'] = 13; }
+            } else {
+                //this is the main setter
+                this[key] = value;
+            }
             if (key === "tool") {
                 console.log("tool chosen with value "+value);
                 if (value === "marker") {
