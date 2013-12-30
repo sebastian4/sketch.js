@@ -21,14 +21,18 @@ $(function() {
         name : 'img'+getDateAndRandomNumber()+'.txt',
         value : localStorage.getItem("currentImage")
       };
+      var resultWarning1 = "click on the following link:";
+      var resultWarning2 = "click on the following link, for best results "
+      	+"wait for about 30 secons then click on the link";
       $.ajax({
-        url: "scripts/aresponse.txt",
+        url: "scripts/getresponse.txt",
         type: "get",
         dataType: "text",
         data: JSON.stringify(ajaxSubmitValue),
         success: function(data){
             console.log("ajax success");
-            $("#ocr-tool-result").html(data);
+            $("#ocr-tool-result").html("<div title='"+resultWarning2+"'>"+resultWarning1+"</div>"
+            	+"<a href='"+getServerLocation()+data+"' title='"+resultWarning2+"' target='_blank'>"+data+"</a>");
         },
         error:function(){
             console.log("ajax failure");
@@ -37,7 +41,15 @@ $(function() {
       });
       //$( "#ocr-tool-result" ).load( "scripts/aresponse.txt" );
   });
-    
+  
+  function getServerLocation() {
+  	var currurl = window.location.protocol + '//'
+  				+ window.location.host 
+  				+ window.location.pathname;
+  	console.log('server address: '+currurl);
+  	return currurl;
+  }
+  
   function getDateAndRandomNumber() {
       var randomNumber = Math.floor((Math.random()*89)+10); // 10 to 99
       var currdate = new Date();

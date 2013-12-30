@@ -56,6 +56,14 @@ body {
 	border-color: #BB5700;
 }
 
+#ocr-tool-result>div {
+	font-size: 10px;
+}
+
+#ocr-tool-result>a {
+	font-size: 8px;
+}
+
 #ocr-canvas-tools-draw {
     width: 200px;
 }
