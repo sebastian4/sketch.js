@@ -1,0 +1,16 @@
+
+canvas.sketchcanvas { 
+    border-style:ridge;
+}
+
+canvas.sketchshowgrids1 { 
+    background:url(../../images/sketchjs/dots1.gif);
+}
+
+canvas.sketchshowgrids2 { 
+    background:url(../../images/sketchjs/dots2.gif);
+}
+
+canvas.sketchshowgrids3 { 
+    background:url(../../images/sketchjs/dots3.jpg);
+}

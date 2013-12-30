@@ -30,7 +30,8 @@ var __slice = Array.prototype.slice;
     Sketch = (function() {
         function Sketch(el, opts) {
             this.el = el;
-            this.el.style.cursor = "url('../images/cursor.brush.png'), pointer";
+            this.imgdir = "../images/sketchjs/";
+            this.el.style.cursor = "url('"+this.imgdir+"cursor.brush.png'), pointer";
             this.canvas = $(el);
             this.canvas.addClass("sketchcanvas");
             this.context = el.getContext('2d');
@@ -187,13 +188,13 @@ var __slice = Array.prototype.slice;
             if (key === "tool") {
                 console.log("tool chosen with value "+value);
                 if (value === "marker") {
-                    this.el.style.cursor = "url('../images/cursor.brush.png'), pointer";
+                    this.el.style.cursor = "url('"+this.imgdir+"cursor.brush.png'), pointer";
                 } else if (value === "eraser") {
-                    this.el.style.cursor = "url('../images/cursor.marker.png'), no-drop";
+                    this.el.style.cursor = "url('"+this.imgdir+"cursor.marker.png'), no-drop";
                 } else if (value === "snaptogrid") {
-                    this.el.style.cursor = "url('../images/cursor.pointer.png'), pointer";
+                    this.el.style.cursor = "url('"+this.imgdir+"cursor.pointer.png'), pointer";
                 } else { // default cursor
-                    this.el.style.cursor = "url('../images/cursor.brush.png'), pointer";
+                    this.el.style.cursor = "url('"+this.imgdir+"cursor.brush.png'), pointer";
                 } 
             }
             return this.canvas.trigger("sketch.change" + key, value);
