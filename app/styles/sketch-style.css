@@ -1,16 +1,16 @@
 
-canvas { 
+canvas.sketchcanvas { 
     border-style:ridge;
 }
 
-canvas.showgrids1 { 
+canvas.sketchshowgrids1 { 
     background:url(../images/dots1.gif);
 }
 
-canvas.showgrids2 { 
+canvas.sketchshowgrids2 { 
     background:url(../images/dots2.gif);
 }
 
-canvas.showgrids3 { 
+canvas.sketchshowgrids3 { 
     background:url(../images/dots3.jpg);
 }

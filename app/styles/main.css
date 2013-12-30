@@ -30,6 +30,11 @@ body {
 
 /* ------- */
 
+#overhead-ocr-tools-core {
+	border: 2px solid;
+	border-color: #BB5700;
+}
+
 #ocr-canvas {
     margin-top: 4px;
     margin-left: 4px;
@@ -45,11 +50,6 @@ body {
 
 #ocr-canvas-tools {
     vertical-align:top;
-}
-
-#overhead-ocr-tools-core {
-	border: 2px solid;
-	border-color: #BB5700;
 }
 
 #td-ocr-tool-result {
@@ -78,9 +78,6 @@ body {
 
 #ocr-tool-marker {
 	background: url('../images/fonticons.jpg');
-	/*background-position: -0px -0px; top-left */
-	/*background-position: -42px -0px; right of top-left */
-	/*background-position: -0px -42px; down of top-left*/
 	background-position: -42px -504px;
 }
 
@@ -144,6 +141,11 @@ body {
 	background-position: -504px -126px;
 }
 
+	/*positions: */
+	/*background-position: -0px -0px; top-left */
+	/*background-position: -42px -0px; right of top-left */
+	/*background-position: -0px -42px; down of top-left*/
+	
 /*
 http://wireframesketcher.com/mockups/images/small/FontAwesomeIcons.jpg
 http://www.sesh.com/images-brush.cursor.g.32.png

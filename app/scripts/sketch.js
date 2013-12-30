@@ -30,8 +30,9 @@ var __slice = Array.prototype.slice;
     Sketch = (function() {
         function Sketch(el, opts) {
             this.el = el;
-            this.el.style.cursor = "url('../images/brush.cursor.g.32.png'), pointer";
+            this.el.style.cursor = "url('../images/cursor.brush.png'), pointer";
             this.canvas = $(el);
+            this.canvas.addClass("sketchcanvas");
             this.context = el.getContext('2d');
             this.options = $.extend({
                 toolLinks: true,
@@ -123,12 +124,12 @@ var __slice = Array.prototype.slice;
             console.log("show grid");
             var canvas_element = $(this.el);
             if (this.showthegrid === false) {
-                canvas_element.addClass("showgrids"+this.showthegridsize);
+                canvas_element.addClass("sketchshowgrids"+this.showthegridsize);
                 this.showthegrid = true;
             } else {
-                canvas_element.removeClass("showgrids1");
-                canvas_element.removeClass("showgrids2");
-                canvas_element.removeClass("showgrids3");
+                canvas_element.removeClass("sketchshowgrids1");
+                canvas_element.removeClass("sketchshowgrids2");
+                canvas_element.removeClass("sketchshowgrids3");
                 this.showthegrid = false;
             }
         };
@@ -186,13 +187,13 @@ var __slice = Array.prototype.slice;
             if (key === "tool") {
                 console.log("tool chosen with value "+value);
                 if (value === "marker") {
-                    this.el.style.cursor = "url('../images/brush.cursor.g.32.png'), pointer";
+                    this.el.style.cursor = "url('../images/cursor.brush.png'), pointer";
                 } else if (value === "eraser") {
-                    this.el.style.cursor = "url('../images/marker.cursor.g.32.png'), no-drop";
+                    this.el.style.cursor = "url('../images/cursor.marker.png'), no-drop";
                 } else if (value === "snaptogrid") {
-                    this.el.style.cursor = "url('../images/pointer.g.png'), pointer";
+                    this.el.style.cursor = "url('../images/cursor.pointer.png'), pointer";
                 } else { // default cursor
-                    this.el.style.cursor = "url('../images/brush.cursor.g.32.png'), pointer";
+                    this.el.style.cursor = "url('../images/cursor.brush.png'), pointer";
                 } 
             }
             return this.canvas.trigger("sketch.change" + key, value);
