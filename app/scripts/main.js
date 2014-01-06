@@ -35,22 +35,22 @@ $(function() {
         data: JSON.stringify(ajaxSubmitValue),
         success: function(data){
             console.log("ajax success");
+            var hrefLocation = getServerLocation()+'/'+data;
+            console.log(hrefLocation);
             $("#ocr-tool-result").html("<div title='"+resultWarning2+"'>"+resultWarning1+"</div>"
-            	+"<a href='"+getServerLocation()+data+"' title='"+resultWarning2+"' target='_blank'>"+randomName+"</a>");
+            	+"<a href='"+hrefLocation+"' title='"+resultWarning2+"' target='_blank'>"+randomName+"</a>");
         },
         error:function(){
             console.log("ajax failure");
             $("#ocr-tool-result").html('error in submission');
         }
       });
-      //$( "#ocr-tool-result" ).load( "scripts/aresponse.txt" );
   });
   
   function getServerLocation() {
   	var currurl = window.location.protocol + '//'
   				+ window.location.host; 
   				//+ window.location.pathname;
-  	console.log('server address: '+currurl);
   	return currurl;
   }
   
