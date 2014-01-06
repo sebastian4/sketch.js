@@ -2,6 +2,14 @@ console.log("starting sketch");
 
 $(function() {
 
+  var pollLapse = 2000;
+  var pollStop = 20000;
+  var pIndex = 0;
+  
+  var timedPoll = null;
+  
+  var hrefLocation = getServerLocation();
+		
   $.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000', '#fff'], function() {
     $('#colors_demo').append("<a href='#colors_sketch' data-color='" + this + "' style='width: 10px; background: " + this + ";'>__</a> ");
   });
@@ -19,14 +27,20 @@ $(function() {
   $('#ocr-canvas').sketch();
     
   $('button#ocr-tool-submitimage').on('click',function() {
+  	
   	  var randomName = 'img'+getDateAndRandomNumber();
+  	  
       var ajaxSubmitValue = {
         name : randomName+'.png',
         value : localStorage.getItem("currentImage")
       };
+      
+      var waitingWarning = "please wait until results come back";
+      
       var resultWarning1 = "Click the following link:";
       var resultWarning2 = "Click the following link. For best results "
       	+"wait for about 30 seconds, then click on the link.";
+      
       $.ajax({
         url: "scripts/getresponse.txt",
         type: "get",
@@ -35,17 +49,53 @@ $(function() {
         data: JSON.stringify(ajaxSubmitValue),
         success: function(data){
             console.log("ajax success");
-            var hrefLocation = getServerLocation()+'/'+data;
+            hrefLocation = getServerLocation()+'/'+data;
             console.log(hrefLocation);
-            $("#ocr-tool-result").html("<div title='"+resultWarning2+"'>"+resultWarning1+"</div>"
-            	+"<a href='"+hrefLocation+"' title='"+resultWarning2+"' target='_blank'>"+randomName+"</a>");
+            $("#ocr-tool-result").html('<img src="images/load3.gif" title="'+waitingWarning+'">');
+            timedPoll = setInterval( function() { timedPollCall(); }, pollLapse);
         },
         error:function(){
             console.log("ajax failure");
             $("#ocr-tool-result").html('error in submission');
         }
       });
+      
   });
+  
+  function timedPollCall() {
+			
+			pIndex++;
+			if ((pIndex*pollLapse) > pollStop) { stopTimedPollCall(); };
+			
+			$.ajax({
+		        url: hrefLocation,
+		        type: "get",
+		        //dataType: "text",
+		        success: function(response){
+		        	console.log("ajax success, time passed = "+ (pIndex*pollLapse) );
+		        	if (checkToStopPolling(response)) { changeResultToButton(response); };
+				},
+		        error:function(response){
+		        	console.log("ajax error");
+		        }
+		      });
+  }
+  
+  function changeResultToButton(response) {
+  	clearInterval(timedPoll);
+    $("#ocr-tool-result").html('<div>result:</div><div title="this is the ocr result">'+response+'</div>');    	
+  }
+  
+  function checkToStopPolling(response) {
+  	console.log("response ="+response);
+    return (response!==null && response.length>0);
+  }
+
+  function stopTimedPollCall() {
+    clearInterval(timedPoll);
+    $("#ocr-tool-result").html('<div>Result taking too long.</div>');
+  }
+
   
   function getServerLocation() {
   	var currurl = window.location.protocol + '//'
