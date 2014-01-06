@@ -4,13 +4,18 @@ canvas.sketchcanvas {
 }
 
 canvas.sketchshowgrids1 { 
-    background:url(../../images/sketchjs/dots1.gif);
+    background:url(../../images/sketchjs/emptygrid.svg);
+    background-size: 1120px 700px;
 }
 
 canvas.sketchshowgrids2 { 
-    background:url(../../images/sketchjs/dots2.gif);
+	background:url(../../images/sketchjs/emptygrid.svg);
+	background-size: 1600px 1000px; /* original size */
+	background-position: 3px 3px;
 }
 
 canvas.sketchshowgrids3 { 
-    background:url(../../images/sketchjs/dots3.jpg);
+	background:url(../../images/sketchjs/emptygrid.svg);
+	background-size: 2080px 1300px;
+	background-position: 9px 9px;
 }
