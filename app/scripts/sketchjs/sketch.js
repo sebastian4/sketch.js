@@ -50,6 +50,7 @@ var __slice = Array.prototype.slice;
             this.showthegridsize = 1;
             this.actions = [];
             this.action = [];
+            this.actionindex = 0;
             this.canvas.bind('click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel', this.onEvent);
             if (this.options.toolLinks) {
                 $('body').delegate("a[href=\"#" + (this.canvas.attr('id')) + "\"]", 'click', function(e) {
@@ -91,6 +92,7 @@ var __slice = Array.prototype.slice;
                     return false;
                 });
             }
+            this.clear("starting");
         }
         Sketch.prototype.savetostorage = function(format) {
             console.log("save to storage");
@@ -113,12 +115,14 @@ var __slice = Array.prototype.slice;
                 this.actions.length = this.actions.length - 1;
                 this.redraw();
             }
+            this.actionindex = this.actions.length;
             return false;
         };
         Sketch.prototype.clear = function(message) {
             console.log("clear, " + message);
             this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
             this.actions.length = 0;
+            this.actionindex = this.actions.length;
             return false;
         };
         Sketch.prototype.showgrid = function() {
@@ -159,18 +163,38 @@ var __slice = Array.prototype.slice;
             }
         };
         Sketch.prototype.console = function() {
+            console.group("sketch snapshot");
+        	console.group("sketch snapshot - main");
+        	console.log('current painting: '+this.painting);
+            console.log('current tool: '+this.tool);
+            console.log('current color: '+this.color);
+            console.log('current size: '+this.size);
+            console.groupEnd();
+            console.group("sketch snapshot - grid stuff");
+            console.log('current gridsize: '+this.gridsize);
+            console.log('current showthegrid: '+this.showthegrid);
+            console.log('current showthegridsize: '+this.showthegridsize);
+            console.log('current paintingongrid: '+this.paintingongrid);
+            console.groupEnd();
+            console.group("sketch snapshot - actions");
             console.log('actions:');
             console.log(this.actions);
-            console.log('actions length:');
-            console.log(this.actions.length);
-            console.log('last action:');
+            console.log('actions length: '+this.actions.length);
+            console.log('action index: '+this.actionindex);
+            if (this.actions.length > 1) {
+            	console.log('before last action:');
+                console.log(JSON.stringify(this.actions[this.actions.length - 2]));
+            } else {
+                console.log('before last action: none');
+            }
             if (this.actions.length > 0) {
+            	console.log('last action:');
                 console.log(JSON.stringify(this.actions[this.actions.length - 1]));
             } else {
-                console.log('none');
+                console.log('last action: none');
             }
-            console.log('current tool:');
-            console.log(this.tool);
+            console.groupEnd();
+            console.groupEnd();
             return false;
         };
         Sketch.prototype.set = function(key, value) {
@@ -190,9 +214,11 @@ var __slice = Array.prototype.slice;
                 if (value === "marker") {
                     this.el.style.cursor = "url('"+this.imgdir+"cursor.brush.png'), pointer";
                 } else if (value === "eraser") {
-                    this.el.style.cursor = "url('"+this.imgdir+"cursor.marker.png'), no-drop";
+                    this.el.style.cursor = "url('"+this.imgdir+"cursor.eraser.png'), no-drop";
                 } else if (value === "snaptogrid") {
-                    this.el.style.cursor = "url('"+this.imgdir+"cursor.pointer.png'), pointer";
+                    this.el.style.cursor = "url('"+this.imgdir+"cursor.ruler.png'), pointer";
+                } else if (value === "drawlines") {
+                    this.el.style.cursor = "url('"+this.imgdir+"cursor.pencil.png'), pointer";
                 } else { // default cursor
                     this.el.style.cursor = "url('"+this.imgdir+"cursor.brush.png'), pointer";
                 } 
@@ -205,6 +231,7 @@ var __slice = Array.prototype.slice;
                 tool: this.tool,
                 color: this.color,
                 size: parseFloat(this.size),
+                index: this.actionindex,
                 events: []
             };
         };
@@ -212,9 +239,19 @@ var __slice = Array.prototype.slice;
             if (this.action) {
                 this.actions.push(this.action);
             }
+            this.actionindex = this.actions.length;
             this.painting = false;
             this.action = null;
             return this.redraw();
+        };
+        Sketch.prototype.paintVertex = function() {
+            return this.action = {
+                tool: this.tool,
+                color: this.color,
+                size: parseFloat(this.size),
+                index: this.actionindex,
+                events: []
+            };
         };
         Sketch.prototype.onEvent = function(e) {
             if (e.originalEvent && e.originalEvent.targetTouches) {
@@ -231,11 +268,11 @@ var __slice = Array.prototype.slice;
             this.context = this.el.getContext('2d');
             sketch = this;
             $.each(this.actions, function() {
-                if (this.tool) {
+                if (this.tool) { // this paints afterwards
                     return $.sketch.tools[this.tool].draw.call(sketch, this);
                 }
             });
-            if (this.painting && this.action) {
+            if (this.painting && this.action) { // this paints on the fly
                 return $.sketch.tools[this.action.tool].draw.call(sketch, this.action);
             }
         };
@@ -318,6 +355,52 @@ var __slice = Array.prototype.slice;
                 event = _ref[_i];
                 this.context.lineTo(event.x, event.y);
                 previous = event;
+            }
+            this.context.strokeStyle = action.color;
+            this.context.lineWidth = action.size;
+            return this.context.stroke();
+        }
+    };
+    $.sketch.tools.drawlines = {
+        onEvent: function(e) {
+        	var paintingVertex = false;
+            switch (e.type) {
+                case 'mousedown':
+                case 'touchstart':
+                    this.paintVertex();
+                    paintingVertex = true;
+                    break;
+                case 'mouseup':
+                case 'mouseout':
+                case 'mouseleave':
+                case 'touchend':
+                case 'touchcancel':
+                    break;
+            }
+            if (paintingVertex) {
+                this.action.events.push({
+                    x: e.pageX - this.canvas.offset().left,
+                    y: e.pageY - this.canvas.offset().top,
+                    event: e.type
+                });
+                this.actions.push(this.action);
+                this.actionindex = this.actions.length;
+                return this.redraw();
+            }
+        },
+        draw: function(action) {
+            this.context.lineJoin = "round";
+            this.context.lineCap = "round";
+            this.context.beginPath();
+            var lastactionindex = (action.index)-1;
+            if (this.actions.length > 0 && lastactionindex >= 0
+            	&& this.actions[lastactionindex].tool == "drawlines") {
+            	var lasttempaction = this.actions[lastactionindex];
+            	this.context.moveTo(lasttempaction.events[0].x, lasttempaction.events[0].y);
+                this.context.lineTo(action.events[0].x, action.events[0].y);
+            } else {
+            	this.context.moveTo(action.events[0].x, action.events[0].y);
+                this.context.lineTo(action.events[0].x, action.events[0].y);
             }
             this.context.strokeStyle = action.color;
             this.context.lineWidth = action.size;
