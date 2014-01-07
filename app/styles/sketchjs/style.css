@@ -3,6 +3,12 @@ canvas.sketchcanvas {
     border-style:ridge;
 }
 
+canvas.sketchshowgrids0 { 
+    background:url(../../images/sketchjs/emptygrid.svg);
+    background-size: 640px 400px;
+    background-position: 2px 3px;
+}
+
 canvas.sketchshowgrids1 { 
     background:url(../../images/sketchjs/emptygrid.svg);
     background-size: 1120px 700px;

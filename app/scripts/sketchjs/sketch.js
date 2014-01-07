@@ -45,9 +45,9 @@ var __slice = Array.prototype.slice;
             this.color = this.options.defaultColor;
             this.size = this.options.defaultSize;
             this.tool = this.options.defaultTool;
-            this.gridsize = 14;
+            this.gridsize = 8;
             this.showthegrid = false;
-            this.showthegridsize = 1;
+            this.showthegridsize = 0;
             this.actions = [];
             this.action = [];
             this.actionindex = 0;
@@ -132,6 +132,7 @@ var __slice = Array.prototype.slice;
                 canvas_element.addClass("sketchshowgrids"+this.showthegridsize);
                 this.showthegrid = true;
             } else {
+                canvas_element.removeClass("sketchshowgrids0");
                 canvas_element.removeClass("sketchshowgrids1");
                 canvas_element.removeClass("sketchshowgrids2");
                 canvas_element.removeClass("sketchshowgrids3");
@@ -143,7 +144,7 @@ var __slice = Array.prototype.slice;
                 this.showgrid();
                 this.showthegridsize = this.showthegridsize + 1;
                 if (this.showthegridsize > 3) {
-                    this.showthegridsize = 1;
+                    this.showthegridsize = 0;
                 }
                 this.gridsize = 8 + (6 * this.showthegridsize);
                 this.showthegrid = false;
@@ -154,7 +155,7 @@ var __slice = Array.prototype.slice;
             if (this.showthegrid === true) {
                 this.showgrid();
                 this.showthegridsize = this.showthegridsize - 1;
-                if (this.showthegridsize < 1) {
+                if (this.showthegridsize < 0) {
                     this.showthegridsize = 3;
                 }
                 this.gridsize = 8 + (6 * this.showthegridsize);
