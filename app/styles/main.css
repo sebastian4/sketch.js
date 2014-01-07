@@ -114,6 +114,11 @@ body {
 	background-position: -462px -168px;
 }
 
+#ocr-tool-drawlines {
+	background: url('../images/fonticons.jpg');
+	background-position: -588px -420px;
+}
+
 #ocr-tool-showgrid {
 	background: url('../images/fonticons.jpg');
 	background-position: -462px -672px;
