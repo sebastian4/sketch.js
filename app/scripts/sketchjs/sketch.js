@@ -51,7 +51,7 @@ var __slice = Array.prototype.slice;
             this.actions = [];
             this.action = [];
             this.actionindex = 0;
-            this.canvas.bind('click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel', this.onEvent);
+            this.canvas.bind('click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel dblclick', this.onEvent);
             if (this.options.toolLinks) {
                 $('body').delegate("a[href=\"#" + (this.canvas.attr('id')) + "\"]", 'click', function(e) {
                     var $canvas, $this, key, sketch, _i, _len, _ref;
@@ -254,6 +254,15 @@ var __slice = Array.prototype.slice;
                 events: []
             };
         };
+        Sketch.prototype.paintEmptySegment = function() {
+            return this.action = {
+                tool: "empty",
+                color: null,
+                size: 0,
+                index: this.actionindex,
+                events: []
+            };
+        };
         Sketch.prototype.onEvent = function(e) {
             if (e.originalEvent && e.originalEvent.targetTouches) {
                 e.pageX = e.originalEvent.targetTouches[0].pageX;
@@ -365,11 +374,17 @@ var __slice = Array.prototype.slice;
     $.sketch.tools.drawlines = {
         onEvent: function(e) {
         	var paintingVertex = false;
+            var endSegment = false;
             switch (e.type) {
                 case 'mousedown':
                 case 'touchstart':
                     this.paintVertex();
                     paintingVertex = true;
+                    break;
+                case 'dblclick':
+                    this.paintVertex();
+                    paintingVertex = true;
+                    endSegment = true;
                     break;
                 case 'mouseup':
                 case 'mouseout':
@@ -385,6 +400,9 @@ var __slice = Array.prototype.slice;
                     event: e.type
                 });
                 this.actions.push(this.action);
+                if (endSegment) {
+                    this.actions.push(this.paintEmptySegment());
+                }
                 this.actionindex = this.actions.length;
                 return this.redraw();
             }
@@ -406,6 +424,14 @@ var __slice = Array.prototype.slice;
             this.context.strokeStyle = action.color;
             this.context.lineWidth = action.size;
             return this.context.stroke();
+        }
+    };
+    $.sketch.tools.empty = {
+        onEvent: function(e) {
+            return null;
+        },
+        draw: function(action) {
+            return null;
         }
     };
     return $.sketch.tools.eraser = {
