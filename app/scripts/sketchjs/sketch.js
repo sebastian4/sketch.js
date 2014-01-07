@@ -395,8 +395,8 @@ var __slice = Array.prototype.slice;
             }
             if (paintingVertex) {
                 this.action.events.push({
-                    x: e.pageX - this.canvas.offset().left,
-                    y: e.pageY - this.canvas.offset().top,
+                    x: ( Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left,
+                    y: ( Math.round(e.pageY / this.gridsize) * this.gridsize ) - this.canvas.offset().top,
                     event: e.type
                 });
                 this.actions.push(this.action);
