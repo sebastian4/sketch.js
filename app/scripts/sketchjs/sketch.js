@@ -129,13 +129,14 @@ var __slice = Array.prototype.slice;
             console.log("show grid");
             var canvas_element = $(this.el);
             if (this.showthegrid === false) {
-                canvas_element.addClass("sketchshowgrids"+this.showthegridsize);
+                canvas_element.addClass("sketchshowgrids");
+                //canvas_element.addClass("sketchshowgrids"+this.showthegridsize);
+                var backgroundWidth = 80*(this.gridsize);
+                var backgroundHeight = 50*(this.gridsize);
+                canvas_element.css("background-size",backgroundWidth+"px "+backgroundHeight+"px");
                 this.showthegrid = true;
             } else {
-                canvas_element.removeClass("sketchshowgrids0");
-                canvas_element.removeClass("sketchshowgrids1");
-                canvas_element.removeClass("sketchshowgrids2");
-                canvas_element.removeClass("sketchshowgrids3");
+            	canvas_element.removeClass("sketchshowgrids");
                 this.showthegrid = false;
             }
         };
@@ -143,10 +144,10 @@ var __slice = Array.prototype.slice;
             if (this.showthegrid === true) {
                 this.showgrid();
                 this.showthegridsize = this.showthegridsize + 1;
-                if (this.showthegridsize > 3) {
-                    this.showthegridsize = 3;
+                if (this.showthegridsize > 6) {
+                    this.showthegridsize = 6;
                 }
-                this.gridsize = 8 + (6 * this.showthegridsize);
+                this.gridsize = 8 + (this.showthegridsize);
                 this.showthegrid = false;
                 this.showgrid();
             }
@@ -155,10 +156,10 @@ var __slice = Array.prototype.slice;
             if (this.showthegrid === true) {
                 this.showgrid();
                 this.showthegridsize = this.showthegridsize - 1;
-                if (this.showthegridsize < 0) {
-                    this.showthegridsize = 0;
+                if (this.showthegridsize < -1) {
+                    this.showthegridsize = -1;
                 }
-                this.gridsize = 8 + (6 * this.showthegridsize);
+                this.gridsize = 8 + (this.showthegridsize);
                 this.showthegrid = false;
                 this.showgrid();
             }

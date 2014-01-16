@@ -3,6 +3,11 @@ canvas.sketchcanvas {
     border-style:ridge;
 }
 
+canvas.sketchshowgrids { 
+    background:url(../../images/sketchjs/emptygrid.svg);
+}
+
+/*
 canvas.sketchshowgrids0 { 
     background:url(../../images/sketchjs/emptygrid.svg);
     background-size: 640px 400px;
@@ -16,7 +21,7 @@ canvas.sketchshowgrids1 {
 
 canvas.sketchshowgrids2 { 
 	background:url(../../images/sketchjs/emptygrid.svg);
-	background-size: 1600px 1000px; /* original size */
+	background-size: 1600px 1000px; original size
 	background-position: 3px 3px;
 }
 
@@ -25,3 +30,4 @@ canvas.sketchshowgrids3 {
 	background-size: 2080px 1300px;
 	background-position: 9px 9px;
 }
+*/
