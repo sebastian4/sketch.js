@@ -413,6 +413,7 @@ var __slice = Array.prototype.slice;
             this.context.beginPath();
             var lastactionindex = (action.index)-1;
             if (this.actions.length > 0 && lastactionindex >= 0
+            	&& this.actions[lastactionindex] !== undefined
             	&& this.actions[lastactionindex].tool == "drawlines") {
             	var lasttempaction = this.actions[lastactionindex];
             	this.context.moveTo(lasttempaction.events[0].x, lasttempaction.events[0].y);
