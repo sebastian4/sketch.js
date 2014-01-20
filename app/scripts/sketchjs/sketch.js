@@ -133,7 +133,10 @@ var __slice = Array.prototype.slice;
                 //canvas_element.addClass("sketchshowgrids"+this.showthegridsize);
                 var backgroundWidth = 80*(this.gridsize);
                 var backgroundHeight = 50*(this.gridsize);
+                var backgroundPosHorizontal = ( Math.round(this.canvas.offset().left / this.gridsize) * this.gridsize ) - this.canvas.offset().left;
+                var backgroundPosVertical = ( Math.round(this.canvas.offset().top / this.gridsize) * this.gridsize ) - this.canvas.offset().top;
                 canvas_element.css("background-size",backgroundWidth+"px "+backgroundHeight+"px");
+                canvas_element.css("background-position",backgroundPosHorizontal+"px "+backgroundPosVertical+"px");
                 this.showthegrid = true;
             } else {
             	canvas_element.removeClass("sketchshowgrids");
@@ -400,6 +403,8 @@ var __slice = Array.prototype.slice;
                     y: ( Math.round(e.pageY / this.gridsize) * this.gridsize ) - this.canvas.offset().top,
                     event: e.type
                 });
+                //console.log("showthegridsize="+this.showthegridsize+"; gridsize="+this.gridsize+"; offset-left="+this.canvas.offset().left+"; offset-top="+this.canvas.offset().top+"; e.pageX="+e.pageX+"; e.pageY="+e.pageY);
+                //console.log("coords: "+(( Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left )+" , "+(( Math.round(e.pageY / this.gridsize) * this.gridsize ) - this.canvas.offset().top));
                 this.actions.push(this.action);
                 if (endSegment) {
                     this.actions.push(this.paintEmptySegment());
