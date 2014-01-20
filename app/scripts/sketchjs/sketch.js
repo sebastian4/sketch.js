@@ -147,8 +147,8 @@ var __slice = Array.prototype.slice;
             if (this.showthegrid === true) {
                 this.showgrid();
                 this.showthegridsize = this.showthegridsize + 1;
-                if (this.showthegridsize > 6) {
-                    this.showthegridsize = 6;
+                if (this.showthegridsize > 9) {
+                    this.showthegridsize = 9;
                 }
                 this.gridsize = 8 + (this.showthegridsize);
                 this.showthegrid = false;
