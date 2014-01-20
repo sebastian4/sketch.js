@@ -30,18 +30,54 @@ body {
 
 /* ------- */
 
+#colors_sketch-container {
+	/* same as original */
+}
+
+#colors_sketch-image-container {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	width: 300px;
+	height: 132px;
+	position: relative;
+	border-style: ridge;
+}
+
+#colors_sketch {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.demo {
+	display:inline;
+}
+
+/* ------- */
+
 #overhead-ocr-tools-core {
 	border: 2px solid;
 	border-color: #BB5700;
 }
 
 #ocr-canvas {
-    margin-top: 4px;
-    margin-left: 4px;
+    position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#ocr-canvas-image-container {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	width: 300px;
+	height: 132px;
+	position: relative;
+	border-style: ridge;
 }
 
 #ocr-canvas-container {
-	display:inline;
+	margin-top: 4px;
+    margin-left: 4px;
 }
 
 #ocr-canvas-tools, #ocr-canvas-tools>div, #ocr-canvas-tools>div>table {
