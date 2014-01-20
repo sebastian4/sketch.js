@@ -425,8 +425,9 @@ var __slice = Array.prototype.slice;
             	this.context.moveTo(lasttempaction.events[0].x, lasttempaction.events[0].y);
                 this.context.lineTo(action.events[0].x, action.events[0].y);
             } else {
-            	this.context.moveTo(action.events[0].x, action.events[0].y);
-                this.context.lineTo(action.events[0].x, action.events[0].y);
+                this.context.strokeRect(action.events[0].x, action.events[0].y, 2, 2);
+            	//this.context.moveTo(action.events[0].x, action.events[0].y);
+                //this.context.lineTo(action.events[0].x, action.events[0].y);
             }
             this.context.strokeStyle = action.color;
             this.context.lineWidth = action.size;
