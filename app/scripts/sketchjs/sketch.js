@@ -51,6 +51,7 @@ var __slice = Array.prototype.slice;
             this.actions = [];
             this.action = [];
             this.actionindex = 0;
+            this.lastdrawlinesmousemove = null;
             this.canvas.bind('click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel dblclick', this.onEvent);
             if (this.options.toolLinks) {
                 $('body').delegate("a[href=\"#" + (this.canvas.attr('id')) + "\"]", 'click', function(e) {
@@ -379,6 +380,7 @@ var __slice = Array.prototype.slice;
         onEvent: function(e) {
         	var paintingVertex = false;
             var endSegment = false;
+            var mouseMove = false;
             switch (e.type) {
                 case 'mousedown':
                 case 'touchstart':
@@ -396,6 +398,9 @@ var __slice = Array.prototype.slice;
                 case 'touchend':
                 case 'touchcancel':
                     break;
+                case 'mousemove':
+                    mouseMove = true;
+                    break;
             }
             if (paintingVertex) {
                 this.action.events.push({
@@ -411,6 +416,40 @@ var __slice = Array.prototype.slice;
                 }
                 this.actionindex = this.actions.length;
                 return this.redraw();
+            } else if (mouseMove) {
+                //console.log("mouse moving; paintingVertex="+paintingVertex+"; endSegment="+endSegment);
+                this.context.lineJoin = "round";
+                this.context.lineCap = "round";
+                if (this.lastdrawlinesmousemove !== null) {
+                    this.context.globalCompositeOperation = "source-over";
+                    this.context.strokeStyle = "rgba(255,255,255,1)";
+                    this.context.lineWidth = 1;
+                    this.context.beginPath();
+                    this.context.moveTo(this.lastdrawlinesmousemove.x1, this.lastdrawlinesmousemove.y1);
+                    this.context.lineTo(this.lastdrawlinesmousemove.x2, this.lastdrawlinesmousemove.y2);
+                    this.context.stroke();
+                }
+                //this.context.strokeStyle = "black";
+                this.context.strokeStyle = "rgba(99,97,97,1)";
+                this.context.lineWidth = 1;
+                this.context.beginPath();
+                var lastactionindex = (this.actions.length)-1;
+                if (this.actions.length > 0 && lastactionindex >= 0
+            	    && this.actions[lastactionindex] !== undefined
+            	    && this.actions[lastactionindex].tool == "drawlines") {
+            	    var lasttempaction = this.actions[lastactionindex];
+                    this.lastdrawlinesmousemove = {
+                        x1: lasttempaction.events[0].x,
+                        y1: lasttempaction.events[0].y,
+                        x2: ( (Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left),
+                        y2: ( (Math.round(e.pageY / this.gridsize) * this.gridsize ) - this.canvas.offset().top)
+                    };
+            	    this.context.moveTo(this.lastdrawlinesmousemove.x1, this.lastdrawlinesmousemove.y1);
+                    this.context.lineTo(this.lastdrawlinesmousemove.x2, this.lastdrawlinesmousemove.y2);
+                } else {
+                    this.lastdrawlinesmousemove = null;
+                }
+                return this.context.stroke();
             }
         },
         draw: function(action) {
@@ -424,6 +463,7 @@ var __slice = Array.prototype.slice;
             	var lasttempaction = this.actions[lastactionindex];
             	this.context.moveTo(lasttempaction.events[0].x, lasttempaction.events[0].y);
                 this.context.lineTo(action.events[0].x, action.events[0].y);
+                this.lastdrawlinesmousemove = null;
             } else {
                 this.context.strokeRect(action.events[0].x, action.events[0].y, 2, 2);
             	//this.context.moveTo(action.events[0].x, action.events[0].y);
