@@ -112,6 +112,9 @@ var __slice = Array.prototype.slice;
         };
         Sketch.prototype.undo = function() {
             console.log("undo");
+            if (this.actions.length > 0 && this.actions[this.actions.length-1].tool == "empty") {
+                this.actions.length = this.actions.length - 1;
+            }
             if (this.actions.length > 0) {
                 this.actions.length = this.actions.length - 1;
                 this.redraw();
@@ -187,6 +190,18 @@ var __slice = Array.prototype.slice;
             console.log(this.actions);
             console.log('actions length: '+this.actions.length);
             console.log('action index: '+this.actionindex);
+            if (this.actions.length > 3) {
+            	console.log('before *3 last action:');
+                console.log(JSON.stringify(this.actions[this.actions.length - 4]));
+            } else {
+                console.log('before *3 last action: none');
+            }
+            if (this.actions.length > 2) {
+            	console.log('before *2 last action:');
+                console.log(JSON.stringify(this.actions[this.actions.length - 3]));
+            } else {
+                console.log('before *2 last action: none');
+            }
             if (this.actions.length > 1) {
             	console.log('before last action:');
                 console.log(JSON.stringify(this.actions[this.actions.length - 2]));
@@ -412,6 +427,8 @@ var __slice = Array.prototype.slice;
                 //console.log("coords: "+(( Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left )+" , "+(( Math.round(e.pageY / this.gridsize) * this.gridsize ) - this.canvas.offset().top));
                 this.actions.push(this.action);
                 if (endSegment) {
+                    this.actions.length = this.actions.length - 2;
+                    this.actionindex = this.actions.length;
                     this.actions.push(this.paintEmptySegment());
                 }
                 this.actionindex = this.actions.length;
