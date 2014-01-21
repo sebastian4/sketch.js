@@ -20,28 +20,30 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="tools">
-            <div class='demo' id='colors_demo'></div>
-            <a href="#colors_sketch" data-tool="marker">Marker</a>
-            <a href="#colors_sketch" data-tool="eraser">Eraser</a>
-            <a href="#colors_sketch" data-tool="drawlines">Lines</a>
-            <a href="#colors_sketch" data-undo="undo">Undo</a>
-            <a href="#colors_sketch" data-clear="cleared">Clear</a>
-            <a href="#colors_sketch" data-tool="snaptogrid">Snp2Grd</a>
-            <a href="#colors_sketch" data-tool="drawlines">DLines</a>
-            <a href="#colors_sketch" data-showgrid="showgrid">showGrid</a>
-            <a href="#colors_sketch" data-showgrid-decrease="showgrid-decrease">grd-</a>
-            <a href="#colors_sketch" data-showgrid-increase="showgrid-increase">grd+</a>
-            <a href="#colors_sketch" data-console="console">C</a>
-            <a href="#colors_sketch" data-savetostorage="png">LStrg</a>
-            <a href="#colors_sketch" data-download="png">Dwnld</a>
+        <div id="colors_sketch-main-pane">
+            <div class="tools">
+                <div class='demo' id='colors_demo'></div>
+                <a href="#colors_sketch" data-tool="marker">Marker</a>
+                <a href="#colors_sketch" data-tool="eraser">Eraser</a>
+                <a href="#colors_sketch" data-tool="drawlines">Lines</a>
+                <a href="#colors_sketch" data-undo="undo">Undo</a>
+                <a href="#colors_sketch" data-clear="cleared">Clear</a>
+                <a href="#colors_sketch" data-tool="snaptogrid">Snp2Grd</a>
+                <a href="#colors_sketch" data-tool="drawlines">DLines</a>
+                <a href="#colors_sketch" data-showgrid="showgrid">showGrid</a>
+                <a href="#colors_sketch" data-showgrid-decrease="showgrid-decrease">grd-</a>
+                <a href="#colors_sketch" data-showgrid-increase="showgrid-increase">grd+</a>
+                <a href="#colors_sketch" data-console="console">C</a>
+                <a href="#colors_sketch" data-savetostorage="png">LStrg</a>
+                <a href="#colors_sketch" data-download="png">Dwnld</a>
+            </div>
+            <div id="colors_sketch-container">
+        	    <div id="colors_sketch-image-container">
+        		    <canvas id="colors_sketch" width="800" height="120"></canvas>
+        	    </div>
+            </div>
         </div>
-        <div id="colors_sketch-container">
-        	<div id="colors_sketch-image-container">
-        		<canvas id="colors_sketch" width="800" height="120"></canvas>
-        	</div>
-        </div>
-        
+
 		<hr />
 		
 		<div id="overhead-ocr-tools-panel">

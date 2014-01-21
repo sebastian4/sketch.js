@@ -30,6 +30,10 @@ body {
 
 /* ------- */
 
+#colors_sketch-main-pane {
+    display: none;
+}
+
 #colors_sketch-container {
 	/* same as original */
 }
