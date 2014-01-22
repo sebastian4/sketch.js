@@ -113,5 +113,12 @@ $(function () {
         var currdate = new Date();
         return '-' + currdate.valueOf() + randomNumber;
     }
+    
+    //
+    
+    $("#ocr-tools-console-2").click(function() {
+        $('#ocr-tools-console-a').click();
+    });
+        
 
 });
