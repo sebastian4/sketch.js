@@ -482,7 +482,7 @@ var __slice = Array.prototype.slice;
                 this.context.lineTo(action.events[0].x, action.events[0].y);
                 this.lastdrawlinesmousemove = null;
             } else {
-                this.context.strokeRect(action.events[0].x, action.events[0].y, 1, 1);
+                this.context.strokeRect(action.events[0].x, action.events[0].y, 0.2, 0.2);
             	//this.context.moveTo(action.events[0].x, action.events[0].y);
                 //this.context.lineTo(action.events[0].x, action.events[0].y);
             }
