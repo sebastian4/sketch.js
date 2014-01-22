@@ -9,6 +9,8 @@ $(function () {
     var timedPoll = null;
 
     var hrefLocation = getServerLocation();
+    
+    var ocrToggleShow = true;
 
     $.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000', '#fff'], function () {
         $('#colors_demo').append("<a href='#colors_sketch' data-color='" + this + "' style='width: 10px; background: " + this + ";'>__</a> ");
@@ -21,7 +23,15 @@ $(function () {
     ////
 
     $('button#show-ocr-tools-core').on('click', function () {
-        $('#overhead-ocr-tools-core').toggle('slow');
+        $('#overhead-ocr-tools-core').toggle('slow', function() {
+            if (ocrToggleShow) {
+                ocrUnbindHandlers();
+                ocrToggleShow = false;
+            } else {
+                ocrBindHandlers();
+                ocrToggleShow = true;
+            }
+        });
         console.log('ocr tools toggle');
     });
     $('#ocr-canvas').sketch();
@@ -120,24 +130,26 @@ $(function () {
         $('#ocr-tools-console-a').click();
     });
     
-    var stopsss = false;
-    $("#ocr-tools-stop-sss").click(function() {
-        console.log("toggle sss");
-        if (stopsss) {
-            ocrUnbindHandlers();
-            stopsss = false;
-        } else {
-            ocrBindHandlers();
-            stopsss = true;
-        }
-    });
+//    var stopsss = false;
+//    $("#ocr-tools-stop-sss").click(function() {
+//        console.log("toggle sss");
+//        if (stopsss) {
+//            ocrUnbindHandlers();
+//            stopsss = false;
+//        } else {
+//            ocrBindHandlers();
+//            stopsss = true;
+//        }
+//    });
     
     function ocrBindHandlers() {
+        //console.log("ocrBindHandlers");
         $(document).on('keydown', null, 'ctrl+z', ocrUndoHandler);
         $(document).on('keydown', null, 'ctrl+q', ocrClearHandler);
     }
     
     function ocrUnbindHandlers() {
+        //console.log("ocrUnbindHandlers");
         $(document).off('keydown', ocrUndoHandler);
         $(document).off('keydown', ocrClearHandler);
     }
