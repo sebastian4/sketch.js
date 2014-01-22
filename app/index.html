@@ -50,6 +50,7 @@
 		    <button id="show-ocr-tools-core">ocr tools</button>
 		    <a id="ocr-tools-console-a" href="#ocr-canvas" data-console="console"><button id="ocr-tools-console-1">c1</button></a>
 		    <button id="ocr-tools-console-2">c2</button>
+		    <button id="ocr-tools-stop-sss">ss</button>
 		    <div id="overhead-ocr-tools-core"> <!--  style="display:none" -->
 		        <div id='ocr-canvas-container'>
 		        	<div id="ocr-canvas-image-container">
@@ -67,8 +68,8 @@
                         </tr>
                         <tr>
                         <td> <a href="#ocr-canvas" data-tool="eraser"> <button id="ocr-tool-eraser" title="erase with eraser"> </button> </a> </td>
-                        <td> <a href="#ocr-canvas" data-undo="undo"> <button id="ocr-tool-undo" title="undo last"> </button> </a> </td>
-                        <td> <a href="#ocr-canvas" data-clear="cleared"> <button id="ocr-tool-clear" title="clear all"> </button> </a> </td>
+                        <td> <a id="ocr-canvas-a-undo" href="#ocr-canvas" data-undo="undo"> <button id="ocr-tool-undo" title="undo last, ctrl+z"> </button> </a> </td>
+                        <td> <a id="ocr-canvas-a-clear" href="#ocr-canvas" data-clear="cleared"> <button id="ocr-tool-clear" title="clear all, ctrl+q"> </button> </a> </td>
                         </tr>
                         </tbody>
                         </table>
@@ -108,6 +109,7 @@
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/jquery.hotkeys/jquery.hotkeys.js"></script>
         <!-- <script src="bower_components/momentjs/moment.js"></script> -->
         <!-- endbower -->
         <!-- endbuild -->

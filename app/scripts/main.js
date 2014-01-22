@@ -119,6 +119,37 @@ $(function () {
     $("#ocr-tools-console-2").click(function() {
         $('#ocr-tools-console-a').click();
     });
-        
+    
+    var stopsss = false;
+    $("#ocr-tools-stop-sss").click(function() {
+        console.log("toggle sss");
+        if (stopsss) {
+            ocrUnbindHandlers();
+            stopsss = false;
+        } else {
+            ocrBindHandlers();
+            stopsss = true;
+        }
+    });
+    
+    function ocrBindHandlers() {
+        $(document).on('keydown', null, 'ctrl+z', ocrUndoHandler);
+        $(document).on('keydown', null, 'ctrl+q', ocrClearHandler);
+    }
+    
+    function ocrUnbindHandlers() {
+        $(document).off('keydown', ocrUndoHandler);
+        $(document).off('keydown', ocrClearHandler);
+    }
+    
+    function ocrUndoHandler(event){
+        $('#ocr-canvas-a-undo').click();
+        return false;          
+    }
+    
+    function ocrClearHandler(event){
+        $('#ocr-canvas-a-clear').click();
+        return false;          
+    }
 
 });
