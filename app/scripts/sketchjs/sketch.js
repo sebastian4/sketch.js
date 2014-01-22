@@ -434,22 +434,8 @@ var __slice = Array.prototype.slice;
                 this.actionindex = this.actions.length;
                 return this.redraw();
             } else if (mouseMove) {
-                //console.log("mouse moving; paintingVertex="+paintingVertex+"; endSegment="+endSegment);
-                this.context.lineJoin = "round";
-                this.context.lineCap = "round";
-                if (this.lastdrawlinesmousemove !== null) {
-                    this.context.globalCompositeOperation = "source-over";
-                    this.context.strokeStyle = "rgba(255,255,255,1)";
-                    this.context.lineWidth = 1;
-                    this.context.beginPath();
-                    this.context.moveTo(this.lastdrawlinesmousemove.x1, this.lastdrawlinesmousemove.y1);
-                    this.context.lineTo(this.lastdrawlinesmousemove.x2, this.lastdrawlinesmousemove.y2);
-                    this.context.stroke();
-                }
-                //this.context.strokeStyle = "black";
-                this.context.strokeStyle = "rgba(99,97,97,1)";
-                this.context.lineWidth = 1;
                 this.context.beginPath();
+                this.redraw();
                 var lastactionindex = (this.actions.length)-1;
                 if (this.actions.length > 0 && lastactionindex >= 0
             	    && this.actions[lastactionindex] !== undefined
