@@ -120,6 +120,11 @@ body {
 	background-position: -42px -504px;
 }
 
+#ocr-tool-toggle {
+	background: url('../images/fonticons.jpg');
+	background-position: -42px -504px;
+}
+
 #ocr-tool-decrmarkersize {
     background: url('../images/fonticons.jpg');
 	background-position: -210px -462px;
