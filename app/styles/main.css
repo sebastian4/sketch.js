@@ -109,10 +109,6 @@ body {
     margin-right: auto;
 }
 
-#ocr-canvas-tools-draw {
-    width: 200px;
-}
-
 #ocr-canvas-tools button {
 	width:36px;
 	height:36px;
