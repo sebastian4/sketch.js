@@ -53,6 +53,7 @@ var __slice = Array.prototype.slice;
             this.actionindex = 0;
             this.toogleToolFlag = false;
             this.lastdrawlinesmousemove = null;
+            this.firstMoveToCanvas = false;
             this.canvas.bind('click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel dblclick', this.onEvent);
             if (this.options.toolLinks) {
                 $('body').delegate("a[href=\"#" + (this.canvas.attr('id')) + "\"]", 'click', function(e) {
@@ -137,17 +138,21 @@ var __slice = Array.prototype.slice;
             if (this.showthegrid === false) {
                 canvas_element.addClass("sketchshowgrids");
                 //canvas_element.addClass("sketchshowgrids"+this.showthegridsize);
-                var backgroundWidth = 80*(this.gridsize);
-                var backgroundHeight = 50*(this.gridsize);
-                var backgroundPosHorizontal = ( Math.round(this.canvas.offset().left / this.gridsize) * this.gridsize ) - this.canvas.offset().left;
-                var backgroundPosVertical = ( Math.round(this.canvas.offset().top / this.gridsize) * this.gridsize ) - this.canvas.offset().top;
-                canvas_element.css("background-size",backgroundWidth+"px "+backgroundHeight+"px");
-                canvas_element.css("background-position",backgroundPosHorizontal+"px "+backgroundPosVertical+"px");
+                this.reshiftBackground();
                 this.showthegrid = true;
             } else {
             	canvas_element.removeClass("sketchshowgrids");
                 this.showthegrid = false;
             }
+        };
+        Sketch.prototype.reshiftBackground = function() {
+            var canvas_element = $(this.el);
+            var backgroundWidth = 80*(this.gridsize);
+            var backgroundHeight = 50*(this.gridsize);
+            var backgroundPosHorizontal = ( Math.round(this.canvas.offset().left / this.gridsize) * this.gridsize ) - this.canvas.offset().left;
+            var backgroundPosVertical = ( Math.round(this.canvas.offset().top / this.gridsize) * this.gridsize ) - this.canvas.offset().top;
+            canvas_element.css("background-size",backgroundWidth+"px "+backgroundHeight+"px");
+            canvas_element.css("background-position",backgroundPosHorizontal+"px "+backgroundPosVertical+"px"); 
         };
         Sketch.prototype.showgridincrease = function() {
             if (this.showthegrid === true) {
@@ -428,6 +433,10 @@ var __slice = Array.prototype.slice;
                 case 'touchcancel':
                     break;
                 case 'mousemove':
+                    if (this.firstMoveToCanvas === false) {
+                        this.reshiftBackground();
+                        this.firstMoveToCanvas = true;
+                    }
                     mouseMove = true;
                     break;
             }
