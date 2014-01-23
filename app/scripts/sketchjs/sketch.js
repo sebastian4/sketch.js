@@ -31,13 +31,13 @@ var __slice = Array.prototype.slice;
         function Sketch(el, opts) {
             this.el = el;
             this.imgdir = "../images/sketchjs/";
-            this.el.style.cursor = "url('"+this.imgdir+"cursor.brush.png'), pointer";
+            this.el.style.cursor = "url('"+this.imgdir+"cursor.pencil.png'), pointer";
             this.canvas = $(el);
             this.canvas.addClass("sketchcanvas");
             this.context = el.getContext('2d');
             this.options = $.extend({
                 toolLinks: true,
-                defaultTool: 'marker',
+                defaultTool: 'drawlines',
                 defaultColor: '#000000',
                 defaultSize: 7
             }, opts);
@@ -51,6 +51,7 @@ var __slice = Array.prototype.slice;
             this.actions = [];
             this.action = [];
             this.actionindex = 0;
+            this.toogleToolFlag = false;
             this.lastdrawlinesmousemove = null;
             this.canvas.bind('click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel dblclick', this.onEvent);
             if (this.options.toolLinks) {
@@ -94,6 +95,7 @@ var __slice = Array.prototype.slice;
                 });
             }
             this.clear("starting");
+            this.showgrid();
         }
         Sketch.prototype.savetostorage = function(format) {
             console.log("save to storage");
@@ -231,7 +233,19 @@ var __slice = Array.prototype.slice;
                 this[key] = value;
             }
             if (key === "tool") {
-                console.log("tool chosen with value "+value);
+                //console.log("tool chosen with value "+value);
+                if (value === "toggle") {
+                    if (this.toogleToolFlag) {
+                        value = "drawlines";
+                        this.toogleToolFlag = false;
+                    } else {
+                        value = "marker";
+                        this.toogleToolFlag = true;
+                    }
+                    this[key] = value;
+                    this.showgrid();
+                }
+                //console.log("tool chosen with value "+value);
                 if (value === "marker") {
                     this.el.style.cursor = "url('"+this.imgdir+"cursor.brush.png'), pointer";
                 } else if (value === "eraser") {
