@@ -1,4 +1,4 @@
-console.log("starting sketch");
+console.log("mainjs starting sketch");
 
 $(function () {
 
