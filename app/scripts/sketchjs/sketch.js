@@ -474,10 +474,10 @@ var __slice = Array.prototype.slice;
                     this.context.lineTo(this.lastdrawlinesmousemove.x2, this.lastdrawlinesmousemove.y2);
                 } else {
                     this.lastdrawlinesmousemove = null;
-                    this.context.strokeRect(
-                        ( (Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left), 
-                        ( (Math.round(e.pageY / this.gridsize) * this.gridsize ) - this.canvas.offset().top), 
-                        1, 1
+                    this.context.fillRect(
+                        ( (Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left) - this['size']/2, 
+                        ( (Math.round(e.pageY / this.gridsize) * this.gridsize ) - this.canvas.offset().top) - this['size']/2, 
+                        this['size'], this['size']
                     );
                 }
                 return this.context.stroke();
@@ -496,7 +496,11 @@ var __slice = Array.prototype.slice;
                 this.context.lineTo(action.events[0].x, action.events[0].y);
                 this.lastdrawlinesmousemove = null;
             } else {
-                this.context.strokeRect(action.events[0].x, action.events[0].y, 0.2, 0.2);
+                this.context.arc(
+                    action.events[0].x, 
+                    action.events[0].y, 
+                    this['size']/32, 0, 2*Math.PI
+                );
             	//this.context.moveTo(action.events[0].x, action.events[0].y);
                 //this.context.lineTo(action.events[0].x, action.events[0].y);
             }
