@@ -474,6 +474,11 @@ var __slice = Array.prototype.slice;
                     this.context.lineTo(this.lastdrawlinesmousemove.x2, this.lastdrawlinesmousemove.y2);
                 } else {
                     this.lastdrawlinesmousemove = null;
+                    this.context.strokeRect(
+                        ( (Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left), 
+                        ( (Math.round(e.pageY / this.gridsize) * this.gridsize ) - this.canvas.offset().top), 
+                        1, 1
+                    );
                 }
                 return this.context.stroke();
             }
