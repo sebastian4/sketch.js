@@ -99,7 +99,7 @@ var __slice = Array.prototype.slice;
             this.showgrid();
         }
         Sketch.prototype.savetostorage = function(format) {
-            console.log("save to storage");
+            //console.log("save to storage");
             var mime;
             format || (format = "png");
             if (format === "jpg") {
@@ -110,11 +110,11 @@ var __slice = Array.prototype.slice;
             return false;
         };
         Sketch.prototype.download = function(format) {
-            console.log("download");
+            //console.log("download");
             return window.open(localStorage.getItem("currentImage"));
         };
         Sketch.prototype.undo = function() {
-            console.log("undo");
+            //console.log("undo");
             if (this.actions.length > 0 && this.actions[this.actions.length-1].tool == "empty") {
                 this.actions.length = this.actions.length - 1;
             }
@@ -126,14 +126,14 @@ var __slice = Array.prototype.slice;
             return false;
         };
         Sketch.prototype.clear = function(message) {
-            console.log("clear, " + message);
+            //console.log("clear, " + message);
             this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
             this.actions.length = 0;
             this.actionindex = this.actions.length;
             return false;
         };
         Sketch.prototype.showgrid = function() {
-            console.log("show grid");
+            //console.log("show grid");
             var canvas_element = $(this.el);
             if (this.showthegrid === false) {
                 canvas_element.addClass("sketchshowgrids");
@@ -226,7 +226,7 @@ var __slice = Array.prototype.slice;
             return false;
         };
         Sketch.prototype.set = function(key, value) {
-            console.log('set '+key+' : '+value);
+            //console.log('set '+key+' : '+value);
             if (key === 'update') {
                 //console.log('update on size '+this['size']+' with value '+value);
                 this['size'] = parseInt(this['size']) + parseInt(value);
