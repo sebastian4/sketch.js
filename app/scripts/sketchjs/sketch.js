@@ -127,9 +127,15 @@ var __slice = Array.prototype.slice;
         };
         Sketch.prototype.clear = function(message) {
             //console.log("clear, " + message);
-            this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-            this.actions.length = 0;
-            this.actionindex = this.actions.length;
+						var doClear = false;
+						if (message !== "starting") {
+							 var doClear = confirm("Do you want to clear the whole image?");
+						}
+						if (doClear) {
+							 this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+            	 this.actions.length = 0;
+            	 this.actionindex = this.actions.length;
+						}
             return false;
         };
         Sketch.prototype.showgrid = function() {
@@ -232,7 +238,7 @@ var __slice = Array.prototype.slice;
                 this['size'] = parseInt(this['size']) + parseInt(value);
                 //console.log('updated to '+this['size']);
                 if (this['size'] < 1) { this['size'] = 1; }
-                if (this['size'] > 13) { this['size'] = 13; }
+                if (this['size'] > 19) { this['size'] = 19; }
             } else {
                 //this is the main setter
                 this[key] = value;
