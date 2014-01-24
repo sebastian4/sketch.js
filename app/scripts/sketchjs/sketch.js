@@ -152,6 +152,7 @@ var __slice = Array.prototype.slice;
             }
         };
         Sketch.prototype.reshiftBackground = function() {
+            console.log("reshiftBackground");
             var canvas_element = $(this.el);
             var backgroundWidth = 80*(this.gridsize);
             var backgroundHeight = 50*(this.gridsize);
@@ -479,6 +480,9 @@ var __slice = Array.prototype.slice;
             	    this.context.moveTo(this.lastdrawlinesmousemove.x1, this.lastdrawlinesmousemove.y1);
                     this.context.lineTo(this.lastdrawlinesmousemove.x2, this.lastdrawlinesmousemove.y2);
                 } else {
+                    
+                    console.log(this.el.parentNode.scrollLeft+" --- "+this.el.parentNode.scrollLeft%this.gridsize+" ---- "+this.canvas.offset().left); //canvas.scroll
+                    
                     this.lastdrawlinesmousemove = null;
                     this.context.fillRect(
                         ( (Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left) - this['size']/2, 
