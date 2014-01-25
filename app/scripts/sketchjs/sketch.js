@@ -95,6 +95,13 @@ var __slice = Array.prototype.slice;
                     return false;
                 });
             }
+            $(this.el.parentNode).scroll(function() {
+                if (this.childNodes.length > 0 && this.childNodes[1]!==null) {
+                    var $childCanvas = $(this.childNodes[1]);
+                    var $tsketch = $childCanvas.data('sketch');
+                    $tsketch.reshiftBackground();
+                }                
+            });
             this.clear("starting");
             this.showgrid();
         }
@@ -152,11 +159,12 @@ var __slice = Array.prototype.slice;
             }
         };
         Sketch.prototype.reshiftBackground = function() {
-            console.log("reshiftBackground");
+            //console.log("reshiftBackground");
             var canvas_element = $(this.el);
             var backgroundWidth = 80*(this.gridsize);
             var backgroundHeight = 50*(this.gridsize);
-            var backgroundPosHorizontal = ( Math.round(this.canvas.offset().left / this.gridsize) * this.gridsize ) - this.canvas.offset().left;
+            var backgroundPosHorizontal = ( Math.round((this.canvas.offset().left+this.el.parentNode.scrollLeft) / this.gridsize) * this.gridsize ) 
+                                            - (this.canvas.offset().left+this.el.parentNode.scrollLeft) + (this.el.parentNode.scrollLeft%this.gridsize);
             var backgroundPosVertical = ( Math.round(this.canvas.offset().top / this.gridsize) * this.gridsize ) - this.canvas.offset().top;
             canvas_element.css("background-size",backgroundWidth+"px "+backgroundHeight+"px");
             canvas_element.css("background-position",backgroundPosHorizontal+"px "+backgroundPosVertical+"px"); 
@@ -480,9 +488,8 @@ var __slice = Array.prototype.slice;
             	    this.context.moveTo(this.lastdrawlinesmousemove.x1, this.lastdrawlinesmousemove.y1);
                     this.context.lineTo(this.lastdrawlinesmousemove.x2, this.lastdrawlinesmousemove.y2);
                 } else {
-                    
-                    console.log(this.el.parentNode.scrollLeft+" --- "+this.el.parentNode.scrollLeft%this.gridsize+" ---- "+this.canvas.offset().left); //canvas.scroll
-                    
+                    //console.log("scrollLeft="+this.el.parentNode.scrollLeft+", scrollLeft%gridsize="+this.el.parentNode.scrollLeft%this.gridsize
+                    //            +", canvas.offset="+this.canvas.offset().left+", scroll+off="+(this.el.parentNode.scrollLeft+this.canvas.offset().left));
                     this.lastdrawlinesmousemove = null;
                     this.context.fillRect(
                         ( (Math.round(e.pageX / this.gridsize) * this.gridsize ) - this.canvas.offset().left) - this['size']/2, 
