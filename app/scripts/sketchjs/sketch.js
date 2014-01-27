@@ -52,6 +52,8 @@ var __slice = Array.prototype.slice;
             this.action = [];
             this.actionindex = 0;
             this.toogleToolFlag = false;
+            this.lastusedtool = 'drawlines';
+            this.lastuseddrawingtool = 'drawlines';
             this.lastdrawlinesmousemove = null;
             this.firstMoveToCanvas = false;
             this.canvas.bind('click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel dblclick', this.onEvent);
@@ -158,6 +160,16 @@ var __slice = Array.prototype.slice;
                 this.showthegrid = false;
             }
         };
+        Sketch.prototype.askshowgrid = function() {
+            //console.log("ask show grid");
+            var canvas_element = $(this.el);
+            if (this.showthegrid === true) {
+                canvas_element.addClass("sketchshowgrids");
+                this.reshiftBackground();
+            } else {
+            	canvas_element.removeClass("sketchshowgrids");
+            }
+        };
         Sketch.prototype.reshiftBackground = function() {
             //console.log("reshiftBackground");
             var canvas_element = $(this.el);
@@ -255,15 +267,25 @@ var __slice = Array.prototype.slice;
             if (key === "tool") {
                 //console.log("tool chosen with value "+value);
                 if (value === "toggle") {
-                    if (this.toogleToolFlag) {
-                        value = "drawlines";
-                        this.toogleToolFlag = false;
+                    //console.log("lastusedtool:"+this.lastusedtool);
+                    if (this.lastusedtool === 'drawlines' || this.lastusedtool === 'marker') {
+                        if (this.toogleToolFlag) {
+                            value = "drawlines";
+                            this.toogleToolFlag = false;
+                            this.showthegrid = true;
+                            this.askshowgrid();
+                        } else {
+                            value = "marker";
+                            this.toogleToolFlag = true;
+                            this.showthegrid = false;
+                            this.askshowgrid();
+                        }
+                        this.lastuseddrawingtool = value;
                     } else {
-                        value = "marker";
-                        this.toogleToolFlag = true;
+                        //console.log("lastuseddrawingtool:"+this.lastuseddrawingtool);
+                        value = this.lastuseddrawingtool;
                     }
                     this[key] = value;
-                    this.showgrid();
                 }
                 //console.log("tool chosen with value "+value);
                 if (value === "marker") {
@@ -277,6 +299,7 @@ var __slice = Array.prototype.slice;
                 } else { // default cursor
                     this.el.style.cursor = "url('"+this.imgdir+"cursor.brush.png'), pointer";
                 } 
+                this.lastusedtool = value;
             }
             return this.canvas.trigger("sketch.change" + key, value);
         };
