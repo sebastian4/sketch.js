@@ -39,7 +39,8 @@ var __slice = Array.prototype.slice;
                 toolLinks: true,
                 defaultTool: 'drawlines',
                 defaultColor: '#000000',
-                defaultSize: 7
+                defaultSize: 7,
+                clearcallback: null
             }, opts);
             this.painting = false;
             this.color = this.options.defaultColor;
@@ -55,6 +56,7 @@ var __slice = Array.prototype.slice;
             this.lastusedtool = 'drawlines';
             this.lastuseddrawingtool = 'drawlines';
             this.lastdrawlinesmousemove = null;
+            this.clearcallback = this.options.clearcallback;
             this.firstMoveToCanvas = false;
             this.canvas.bind('click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel dblclick', this.onEvent);
             if (this.options.toolLinks) {
@@ -138,7 +140,12 @@ var __slice = Array.prototype.slice;
             //console.log("clear, " + message);
 						var doClear = false;
 						if (message !== "starting") {
-							 var doClear = confirm("Do you want to clear the whole image?");
+                            if (this.clearcallback!==null) {
+                                doClear = this.clearcallback();
+                            } else {
+                                doClear = true;  
+                            }
+				            //var doClear = confirm("Do you want to clear the whole image?");
 						}
 						if (doClear) {
 							 this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
