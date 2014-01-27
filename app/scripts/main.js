@@ -35,9 +35,32 @@ $(function () {
         console.log('ocr tools toggle');
     });
     
+    $("#ocr-tools-stop-sss").click(function () {
+        clearDialogCallback();
+    });
+    
     function clearCallback() {
         var askIfClear = confirm("erase for real?");
         return askIfClear;
+    }
+    
+    function clearDialogCallback() {
+        ( "#dialog-confirm" ).dialog({
+          resizable: false,
+          height:180,
+          modal: true,
+          buttons: {
+            "Delete all items": function() {
+                //$( this ).dialog( "close" );
+                return true;
+            },
+            Cancel: function() {
+                //$( this ).dialog( "close" );
+                return false;
+            }
+          }
+        });
+        //return false;
     }
     
     $('#ocr-canvas').sketch({
