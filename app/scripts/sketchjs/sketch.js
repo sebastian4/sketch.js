@@ -478,8 +478,8 @@ var __slice = Array.prototype.slice;
                     break;
                 case 'mouseleave':
                     //console.log("mouse leave");
-                    this.context.beginPath();
                     this.redraw();
+                    this.context.beginPath();
                     this.context.stroke();
                     break;
                 case 'mousemove':
@@ -507,8 +507,8 @@ var __slice = Array.prototype.slice;
                 this.actionindex = this.actions.length;
                 return this.redraw();
             } else if (mouseMove) {
-                this.context.beginPath();
                 this.redraw();
+                this.context.beginPath();
                 var lastactionindex = (this.actions.length)-1;
                 if (this.actions.length > 0 && lastactionindex >= 0
             	    && this.actions[lastactionindex] !== undefined
@@ -574,6 +574,7 @@ var __slice = Array.prototype.slice;
             return $.sketch.tools.marker.onEvent.call(this, e);
         },
         draw: function(action) {
+            //console.log("drawing with eraser");
             var oldcomposite;
             oldcomposite = this.context.globalCompositeOperation;
             this.context.globalCompositeOperation = "destination-out";
