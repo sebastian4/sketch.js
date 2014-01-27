@@ -34,7 +34,15 @@ $(function () {
         });
         console.log('ocr tools toggle');
     });
-    $('#ocr-canvas').sketch();
+    
+    function clearCallback() {
+        var askIfClear = confirm("erase for real?");
+        return askIfClear;
+    }
+    
+    $('#ocr-canvas').sketch({
+        clearcallback: clearCallback
+    });
 
     $('button#ocr-tool-submitimage').on('click', function () {
 
