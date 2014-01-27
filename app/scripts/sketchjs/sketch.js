@@ -39,7 +39,7 @@ var __slice = Array.prototype.slice;
                 toolLinks: true,
                 defaultTool: 'drawlines',
                 defaultColor: '#000000',
-                defaultSize: 7,
+                defaultSize: 9,
                 clearcallback: null
             }, opts);
             this.painting = false;
@@ -204,8 +204,8 @@ var __slice = Array.prototype.slice;
             if (this.showthegrid === true) {
                 this.showgrid();
                 this.showthegridsize = this.showthegridsize - 1;
-                if (this.showthegridsize < -1) {
-                    this.showthegridsize = -1;
+                if (this.showthegridsize < -4) {
+                    this.showthegridsize = -4;
                 }
                 this.gridsize = 8 + (this.showthegridsize);
                 this.showthegrid = false;
