@@ -4,7 +4,8 @@
   "dependencies": {
     "jquery": "~1.10.2",
     "momentjs": "~2.5.0",
-    "jquery.hotkeys": "jeresig/jquery.hotkeys#~0.1.0"
+    "jquery.hotkeys": "jeresig/jquery.hotkeys#~0.1.0",
+    "jquery-ui": "~1.10.3"
   },
   "devDependencies": {}
 }
