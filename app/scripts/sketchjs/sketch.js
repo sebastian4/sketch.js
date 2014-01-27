@@ -443,9 +443,14 @@ var __slice = Array.prototype.slice;
                     break;
                 case 'mouseup':
                 case 'mouseout':
-                case 'mouseleave':
                 case 'touchend':
                 case 'touchcancel':
+                    break;
+                case 'mouseleave':
+                    //console.log("mouse leave");
+                    this.context.beginPath();
+                    this.redraw();
+                    this.context.stroke();
                     break;
                 case 'mousemove':
                     if (this.firstMoveToCanvas === false) {
