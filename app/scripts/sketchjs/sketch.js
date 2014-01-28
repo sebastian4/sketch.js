@@ -45,7 +45,7 @@ var __slice = Array.prototype.slice;
             this.color = this.options.defaultColor;
             this.size = this.options.defaultSize;
             this.tool = this.options.defaultTool;
-            this.gridsize = 8;
+            this.gridsize = 4;
             this.showthegrid = false;
             this.showthegridsize = 0;
             this.actions = [];
@@ -185,10 +185,10 @@ var __slice = Array.prototype.slice;
             if (this.showthegrid === true) {
                 this.showgrid();
                 this.showthegridsize = this.showthegridsize + 1;
-                if (this.showthegridsize > 9) {
-                    this.showthegridsize = 9;
+                if (this.showthegridsize > 14) {
+                    this.showthegridsize = 14;
                 }
-                this.gridsize = 8 + (this.showthegridsize);
+                this.gridsize = 4 + (this.showthegridsize);
                 this.showthegrid = false;
                 this.showgrid();
             }
@@ -197,10 +197,10 @@ var __slice = Array.prototype.slice;
             if (this.showthegrid === true) {
                 this.showgrid();
                 this.showthegridsize = this.showthegridsize - 1;
-                if (this.showthegridsize < -4) {
-                    this.showthegridsize = -4;
+                if (this.showthegridsize < 0) {
+                    this.showthegridsize = 0;
                 }
-                this.gridsize = 8 + (this.showthegridsize);
+                this.gridsize = 4 + (this.showthegridsize);
                 this.showthegrid = false;
                 this.showgrid();
             }
