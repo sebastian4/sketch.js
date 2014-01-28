@@ -35,45 +35,28 @@ $(function () {
         console.log('ocr tools toggle');
     });
     
-    $("#ocr-tools-stop-sss").click(function () {
-        clearDialogCallback();
+    $("#ocr-tool-clear").click(function () {
+        clearCanvasDialog();
     });
     
-    function clearCallback() {
-        var askIfClear = confirm("erase for real?");
-        return askIfClear;
-    }
-    
-    function clearDialogCallback() {
-    	console.log("clearDialogCallback");
-    	
+    function clearCanvasDialog() {
         $("#dialog-confirm").dialog({
           resizable: false,
           height: 240,
-          modal: true,
+          modal: false,
           buttons: {
-            "Clear": function() {
+            "Clear All": function() {
                 $( this ).dialog( "close" );
-                return true;
+                $('#ocr-canvas-a-clear').click();
             },
             Cancel: function() {
                 $( this ).dialog( "close" );
-                return false;
             }
           }
         });
-        //return false;
-        
-        //$("#dialog-confirm").dialog({ autoOpen: true });
-        
-        //$("#dialog").dialog("open");
-        
-        console.log("clearDialogCallback done");
     }
     
-    $('#ocr-canvas').sketch({
-        clearcallback: clearCallback
-    });
+    $('#ocr-canvas').sketch();
 
     $('button#ocr-tool-submitimage').on('click', function () {
 

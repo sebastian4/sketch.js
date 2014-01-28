@@ -76,7 +76,7 @@
                                     <tr>
                                     <td> <a href="#ocr-canvas" data-tool="eraser"> <button id="ocr-tool-eraser" title="erase with eraser"> </button> </a> </td>
                                     <td> <a id="ocr-canvas-a-undo" href="#ocr-canvas" data-undo="undo"> <button id="ocr-tool-undo" title="undo last, ctrl+z"> </button> </a> </td>
-                                    <td> <a id="ocr-canvas-a-clear" href="#ocr-canvas" data-clear="cleared"> <button id="ocr-tool-clear" title="clear all, ctrl+q"> </button> </a> </td>
+                                    <td> <button id="ocr-tool-clear" title="clear all, ctrl+q"> </button> </td>
                                     <td> <a href="#ocr-canvas" data-showgrid-decrease="showgrid-decrease"> <button id="ocr-tool-decrgridsize" title="decrease grid size"> </button> </a> </td>
                                     </tr>
                                     </tbody>
@@ -124,7 +124,10 @@
 		        </div>
 		    </div>
             <div id="dialog-confirm" title="Empty the canvas?" style="display:none">
-              <p>The canvas will be permanently cleared. Are you sure?</p>
+                <p>The canvas will be permanently cleared. Are you sure?</p>
+            </div>    
+            <div style="display:none">
+                <a id="ocr-canvas-a-clear" href="#ocr-canvas" data-clear="cleared">.</a>
             </div>
 		</div>
 
