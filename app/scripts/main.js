@@ -45,22 +45,30 @@ $(function () {
     }
     
     function clearDialogCallback() {
-        ( "#dialog-confirm" ).dialog({
+    	console.log("clearDialogCallback");
+    	
+        $("#dialog-confirm").dialog({
           resizable: false,
-          height:180,
+          height: 240,
           modal: true,
           buttons: {
-            "Delete all items": function() {
-                //$( this ).dialog( "close" );
+            "Clear": function() {
+                $( this ).dialog( "close" );
                 return true;
             },
             Cancel: function() {
-                //$( this ).dialog( "close" );
+                $( this ).dialog( "close" );
                 return false;
             }
           }
         });
         //return false;
+        
+        //$("#dialog-confirm").dialog({ autoOpen: true });
+        
+        //$("#dialog").dialog("open");
+        
+        console.log("clearDialogCallback done");
     }
     
     $('#ocr-canvas').sketch({
