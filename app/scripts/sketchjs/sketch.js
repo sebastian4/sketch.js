@@ -394,7 +394,7 @@ var __slice = Array.prototype.slice;
         draw: function(action) {
             var event, previous, _i, _len, _ref;
             this.context.lineJoin = "round";
-            this.context.lineCap = "round";
+            this.context.lineCap = "square";
             this.context.beginPath();
             this.context.moveTo(action.events[0].x, action.events[0].y);
             _ref = action.events;
