@@ -39,7 +39,7 @@ var __slice = Array.prototype.slice;
                 toolLinks: true,
                 defaultTool: 'drawlines',
                 defaultColor: '#000000',
-                defaultSize: 9
+                defaultSize: 11
             }, opts);
             this.painting = false;
             this.color = this.options.defaultColor;
