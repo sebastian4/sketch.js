@@ -1,0 +1,41 @@
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+.hero-unit {
+    margin: 50px auto 0 auto;
+    width: 300px;
+    font-size: 14px;
+    font-weight: 140;
+    line-height: 20px;
+    background-color: #eee;
+    border-radius: 6px;
+    padding: 40px;
+}
+
+.hero-unit h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ------- */
+
+#colors_sketch-image-container {
+    border-style: ridge;
+    width: 700px;
+    height: 200px;
+}
+
+#colors_sketch {
+    background: url(http://www.objectvideo.com/images/11600Sunrise_web.jpg);
+}
