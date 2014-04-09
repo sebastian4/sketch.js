@@ -52,8 +52,8 @@ var __slice = Array.prototype.slice;
             this.action = [];
             this.actionindex = 0;
             this.toogleToolFlag = false;
-            this.lastusedtool = 'drawlines';
-            this.lastuseddrawingtool = 'drawlines';
+            this.lastusedtool = this.options.defaultTool;
+            this.lastuseddrawingtool = this.options.defaultTool;
             this.lastdrawlinesmousemove = null;
             this.firstMoveToCanvas = false;
             this.canvas.bind('click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel dblclick', this.onEvent);
@@ -105,7 +105,13 @@ var __slice = Array.prototype.slice;
                 }                
             });
             this.clear("starting");
-            this.showgrid();
+            if (this.lastusedtool!=='marker') {
+                console.log("not starting with a marker");
+                this.showgrid();
+            } else {
+                console.log("its a marker");
+                this.el.style.cursor = "url('"+this.imgdir+"cursor.brush.png'), pointer";
+            }
         }
         Sketch.prototype.savetostorage = function(format) {
             //console.log("save to storage");
